@@ -15,9 +15,16 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/t1")
     public Map t1(){
+        Date date=new Date();
         Map ss=new HashMap();
         ss.put("v1",new Date());
-        ss.put("v2","嚯嚯嚯");
+        ss.put("v2","嚯嚯嚯我是服务1");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ss.put("耗时",new Date().getTime()-date.getTime());
         return  ss;
     }
 }

@@ -1,6 +1,10 @@
 # 端口
 server:
   port: 8771
+  #开启自我保护模式
+  enable-self-preservation: false
+  #清理无效节点,默认60*1000毫秒,即60秒
+  eviction-interval-timer-in-ms: 5000
 spring:
   application:
     name: eureka-client1
@@ -9,6 +13,8 @@ eureka:
   instance:
     # eureka服务端的实例名称
     hostname: client
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}:${random.value}
+    prefer-ip-address: true
   client:
      service-url:
       defaultZone: http://localhost:8761/eureka
